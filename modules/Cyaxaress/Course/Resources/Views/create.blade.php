@@ -55,7 +55,7 @@
                     @endforeach
                 </x-select>
 
-                <x-file placeholder="آپلود بنر دوره" name="image" />
+                <x-file placeholder="آپلود بنر دوره" name="image" required />
                 <x-textarea placeholder="توضیحات دوره" name="body" />
                 <br>
                 <button class="btn btn-webamooz_net">ایجاد دوره</button>
