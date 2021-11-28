@@ -47,6 +47,6 @@ class UserPolicy
 
     public function editProfile($user)
     {
-        if (auth()->check())  return true ;
+        if (auth()->check()) return true;
     }
 }

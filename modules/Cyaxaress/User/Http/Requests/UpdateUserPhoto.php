@@ -6,7 +6,7 @@ namespace Cyaxaress\User\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateUserPhotoRequest  extends FormRequest
+class UpdateUserPhoto  extends FormRequest
 {
     public function authorize()
     {

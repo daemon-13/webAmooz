@@ -9,7 +9,7 @@ use Cyaxaress\Common\Responses\AjaxResponses;
 use Cyaxaress\Media\Services\MediaFileService;
 use Cyaxaress\RolePermissions\Repositories\RoleRepo;
 use Cyaxaress\User\Http\Requests\UpdateProfileInformationRequest;
-use Cyaxaress\User\Http\Requests\UpdateUserPhotoRequest;
+use Cyaxaress\User\Http\Requests\UpdateUserPhoto;
 use Cyaxaress\User\Http\Requests\UpdateUserRequest;
 use Cyaxaress\User\Models\User;
 use Cyaxaress\User\Repositories\UserRepo;
@@ -60,16 +60,15 @@ class UserController extends Controller
         return redirect()->back();
     }
 
-    public function updatePhoto(UpdateUserPhotoRequest $request)
+    public function updatePhoto(UpdateUserPhoto $request)
     {
         $this->authorize('editProfile', User::class);
-
-        $media= MediaFileService::upload($request->file('userPhoto'));
-
+        $media = MediaFileService::upload($request->file('userPhoto'));
         if (auth()->user()->image) auth()->user()->image->delete();
-        auth()->user()->image_id = $media->id ;
+        auth()->user()->image_id = $media->id;
         auth()->user()->save();
         newFeedback();
+
         return back();
     }
 
@@ -82,6 +81,10 @@ class UserController extends Controller
     public function updateProfile(UpdateProfileInformationRequest $request)
     {
         $this->authorize('editProfile', User::class);
+        $this->userRepo->updateProfile($request);
+        newFeedback();
+        return back();
+
     }
 
     public function destroy($userId)
@@ -100,7 +103,7 @@ class UserController extends Controller
         return AjaxResponses::SuccessResponse();
     }
 
-    public function addRole(UpdateUserPhotoRequest $request, User $user)
+    public function addRole(UpdateUserPhoto $request, User $user)
     {
         $this->authorize('addRole', User::class);
         $user->assignRole($request->role);
@@ -114,10 +117,5 @@ class UserController extends Controller
         $user = $this->userRepo->findById($userId);
         $user->removeRole($role);
         return AjaxResponses::SuccessResponse();
-    }
-
-    public function viewProfile()
-    {
-
     }
 }
