@@ -7,17 +7,22 @@
     <div class="row no-gutters  ">
         <div class="col-12 bg-white">
             <p class="box__title">بروزرسانی دوره</p>
-            <form action="{{ route('courses.update',$course->id) }}" class="padding-30" method="post" enctype="multipart/form-data">
+            <form action="{{ route('courses.update', $course->id) }}" class="padding-30" method="post" enctype="multipart/form-data">
                 @csrf
                 @method('patch')
                 <x-input name="title" placeholder="عنوان دوره" type="text" value="{{ $course->title }}" required/>
-                <x-input type="text" name="slug" placeholder="نام انگلیسی دوره" class="text-left" value="{{ $course->slug }}" required />
+                <x-input type="text" name="slug" placeholder="نام انگلیسی دوره" value="{{ $course->slug }}" class="text-left" required />
 
 
                 <div class="d-flex multi-text">
-                    <x-input type="text" class="text-left mlg-15" name="priority" value="{{ $course->priority }}" placeholder="ردیف دوره" />
-                    <x-input type="text" placeholder="مبلغ دوره" name="price" value="{{ $course->price }}" class="text-left" required />
-                    <x-input type="number" placeholder="درصد مدرس" name="percent" value="{{ $course->percent }}" class="text-left" required />
+                    <x-input type="text" class="text-left mlg-15" name="priority"
+                             value="{{ $course->priority }}" placeholder="ردیف دوره" />
+
+                    <x-input type="text" placeholder="مبلغ دوره" name="price" class="text-left"
+                             value="{{ $course->price }}" required />
+
+                    <x-input type="number" placeholder="درصد مدرس" name="percent" class="text-left"
+                             value="{{ $course->percent }}" required />
                 </div>
                 <x-select name="teacher_id" required>
                     <option value="">انتخاب مدرس دوره</option>
@@ -56,8 +61,8 @@
                     @endforeach
                 </x-select>
 
-                <x-file placeholder="آپلود بنر دوره" name="image" :value="$course->banner" />
-                <x-textarea placeholder="توضیحات دوره" name="body" value="{{ $course->body }}"/>
+                <x-file placeholder="آپلود بنر دوره" name="image" :value="$course->banner"/>
+                <x-textarea placeholder="توضیحات دوره" name="body" value="{{ $course->body }}" />
                 <br>
                 <button class="btn btn-webamooz_net">بروزرسانی دوره</button>
             </form>

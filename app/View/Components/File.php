@@ -8,6 +8,9 @@ class File extends Component
 {
     public $placeholder;
     public $name;
+    /**
+     * @var null
+     */
     public $value;
 
     /**
@@ -15,11 +18,11 @@ class File extends Component
      *
      * @return void
      */
-    public function __construct($placeholder, $name, $value=null)
+    public function __construct($placeholder, $name, $value = null)
     {
         $this->placeholder = $placeholder;
         $this->name = $name;
-        $this->value =$value ;
+        $this->value = $value;
     }
 
     /**

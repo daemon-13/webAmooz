@@ -20,5 +20,4 @@ class Media extends Model
     {
         return '/storage/' .  $this->files[300];
     }
-
 }

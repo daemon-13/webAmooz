@@ -22,6 +22,7 @@ class CourseRepo
             'type' => $values->type,
             'status' => $values->status,
             'body' => $values->body,
+            'confirmation_status' => Course::CONFIRMATION_STATUS_PENDING,
         ]);
     }
 
@@ -35,9 +36,9 @@ class CourseRepo
         return Course::findOrFail($id);
     }
 
-    public function update($values, $id)
+    public function update($id, $values)
     {
-        return Course::where('id',$id)->update([
+        return Course::where('id', $id)->update([
             'teacher_id' => $values->teacher_id,
             'category_id' => $values->category_id,
             'banner_id' => $values->banner_id,
@@ -50,6 +51,15 @@ class CourseRepo
             'status' => $values->status,
             'body' => $values->body,
         ]);
+    }
 
+    public function updateConfirmationStatus($id, string $status)
+    {
+        return Course::where('id', $id)->update(['confirmation_status'=> $status]);
+    }
+
+    public function updateStatus($id, string $status)
+    {
+        return Course::where('id', $id)->update(['status'=> $status]);
     }
 }

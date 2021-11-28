@@ -4,6 +4,18 @@ Route::group([
     'namespace' => 'Cyaxaress\User\Http\Controllers',
     'middleware' => 'web'
 ], function ($router) {
+    Route::post('users/{user}/add/role', "UserController@addRole")->name('users.addRole');
+    Route::delete('users/{user}/remove/{role}/role', "UserController@removeRole")->name('users.removeRole');
+    Route::patch('users/{user}/manualVerify', "UserController@manualVerify")->name('users.manualVerify');
+    Route::post('users/photo', "UserController@updatePhoto")->name('users.photo');
+    Route::get('users/profile', "UserController@profile")->name('users.profile');
+
+
+    Route::post('users/profile', "UserController@updateProfile")->name('users.profile');
+    Route::get('tutors/{username}', "UserController@viewProfile")->name('viewProfile');
+
+    Route::resource('users', "UserController");
+
     Route::post('/email/verify', 'Auth\VerificationController@verify')->name('verification.verify');
     Route::post('/email/resend', 'Auth\VerificationController@resend')->name('verification.resend');
     Route::get('/email/verify', 'Auth\VerificationController@show')->name('verification.notice');
