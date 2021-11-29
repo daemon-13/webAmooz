@@ -27,6 +27,7 @@
                 <td class="confirmation_status">@lang($season->confirmation_status)</td>
                 <td>
                     <a href=""   onclick="deleteItem(event, '{{ route('seasons.destroy', $season->id) }}')"  class="item-delete mlg-15" title="حذف"></a>
+                  @can(\Cyaxaress\RolePermissions\Models\Permission::PERMISSION_MANAGE_COURSES)
                     <a href="" onclick="updateConfirmationStatus(event, '{{ route('seasons.accept', $season->id) }}',
                         'آیا از تایید این آیتم اطمینان دارید؟' , 'تایید شده')"
                        class="item-confirm mlg-15" title="تایید"></a>
@@ -40,6 +41,7 @@
                     <a href="" onclick="updateConfirmationStatus(event, '{{ route('seasons.unlock', $season->id) }}',
                         'آیا از باز کردن این آیتم اطمینان دارید؟' , 'باز', 'status')"
                        class="item-lock text-success mlg-15" title="باز کردن"></a>
+                    @endcan
                     <a href="{{ route('seasons.edit', $season->id) }}" class="item-edit " title="ویرایش"></a>
                 </td>
             </tr>

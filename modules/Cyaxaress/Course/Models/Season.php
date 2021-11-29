@@ -4,9 +4,11 @@ namespace Cyaxaress\Course\Models;
 
 use Cyaxaress\User\Models\User;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Permission\Traits\HasRoles;
 
 class Season extends Model
 {
+    use HasRoles ;
     protected $guarded = [];
 
     const CONFIRMATION_STATUS_ACCEPTED = 'accepted';
