@@ -50,25 +50,25 @@ class CoursePolicy
         return null;
     }
 
-    public function details($user , $course)
+    public function details($user, $course)
     {
-        if ($user->hasPermissionTo(Permission::PERMISSION_MANAGE_COURSES)){
-            return true ;
+        if ($user->hasPermissionTo(Permission::PERMISSION_MANAGE_COURSES)) {
+            return true;
         }
-        if ($user->hasPermissionTo(Permission::PERMISSION_MANAGE_OWN_COURSES) && $course->teacher_id == $user->id){
-            return true ;
-        }
-        return null;
-    }
 
-    public function createSeason($user,$course)
-    {
-        if ($user->hasPermissionTo(Permission::PERMISSION_MANAGE_COURSES)){
-            return true ;
-        }
         if ($user->hasPermissionTo(Permission::PERMISSION_MANAGE_OWN_COURSES) && $course->teacher_id == $user->id) {
-            return true ;
+            return  true;
+        }
     }
 
+    public function createSeason($user, $course)
+    {
+        if ($user->hasPermissionTo(Permission::PERMISSION_MANAGE_COURSES)) {
+            return true;
+        }
+
+        if ($user->hasPermissionTo(Permission::PERMISSION_MANAGE_OWN_COURSES) && $course->teacher_id == $user->id) {
+            return true;
+        }
     }
 }

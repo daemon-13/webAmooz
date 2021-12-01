@@ -19,7 +19,6 @@ class SeasonTest extends TestCase
     use RefreshDatabase;
     use WithFaker;
 
-
     public function test_permitted_user_can_see_course_details_page()
     {
         $this->actAsAdmin();
@@ -176,7 +175,6 @@ class SeasonTest extends TestCase
         $this->assertEquals("test season title", Season::find(1)->title);
     }
 
-
     public function test_permitted_user_can_delete_season()
     {
         $this->actAsAdmin();
@@ -250,7 +248,6 @@ class SeasonTest extends TestCase
         $this->assertEquals(Season::CONFIRMATION_STATUS_PENDING, Season::find(2)->confirmation_status);
     }
 
-
     public function test_permitted_user_can_reject_season()
     {
         $this->actAsAdmin();
@@ -278,7 +275,6 @@ class SeasonTest extends TestCase
         $this->patch(route('seasons.reject', 1))->assertStatus(403);
         $this->assertEquals(Season::CONFIRMATION_STATUS_PENDING, Season::find(2)->confirmation_status);
     }
-
 
     public function test_permitted_user_can_lock_season()
     {
@@ -308,7 +304,6 @@ class SeasonTest extends TestCase
         $this->assertEquals(Season::STATUS_OPENED, Season::find(2)->status);
     }
 
-
     public function test_permitted_user_can_unlock_season()
     {
         $this->actAsAdmin();
@@ -335,9 +330,6 @@ class SeasonTest extends TestCase
         $this->patch(route('seasons.lock', 1))->assertStatus(403);
         $this->assertEquals(Season::STATUS_LOCKED, Season::find(1)->status);
     }
-
-
-
 
 
     private function createUser()
@@ -378,7 +370,7 @@ class SeasonTest extends TestCase
     private function courseData()
     {
         $category = $this->createCategory();
-        return [
+        return[
             'title' => $this->faker->sentence(2),
             "slug" => $this->faker->sentence(2),
             'teacher_id' => auth()->id(),

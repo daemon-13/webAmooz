@@ -6,7 +6,7 @@
 @section('content')
     <div class="row no-gutters  ">
         <div class="col-12 bg-white">
-            <p class="box__title">بروزرسانی دوره</p>
+            <p class="box__title">ایجاد دوره</p>
             <form action="{{ route('courses.store') }}" class="padding-30" method="post" enctype="multipart/form-data">
                 @csrf
                 <x-input name="title" placeholder="عنوان دوره" type="text" required/>

@@ -18,6 +18,6 @@ class Media extends Model
 
     public function getThumbAttribute()
     {
-        return '/storage/' .  $this->files[300];
+       return  !isset($this->files[300]) ?'': '/storage/' .  $this->files[300] ;
     }
 }

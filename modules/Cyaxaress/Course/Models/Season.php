@@ -4,13 +4,9 @@ namespace Cyaxaress\Course\Models;
 
 use Cyaxaress\User\Models\User;
 use Illuminate\Database\Eloquent\Model;
-use Spatie\Permission\Traits\HasRoles;
 
 class Season extends Model
 {
-    use HasRoles ;
-    protected $guarded = [];
-
     const CONFIRMATION_STATUS_ACCEPTED = 'accepted';
     const CONFIRMATION_STATUS_REJECTED = 'rejected';
     const CONFIRMATION_STATUS_PENDING = 'pending';
@@ -20,9 +16,16 @@ class Season extends Model
     const STATUS_LOCKED = 'locked';
     static $statuses = [self::STATUS_OPENED, self::STATUS_LOCKED];
 
+
+    protected $guarded = [];
     public function course()
     {
         return $this->belongsTo(Course::class);
+    }
+
+    public function lessons()
+    {
+        return $this->hasMany(Lesson::class);
     }
 
     public function user()

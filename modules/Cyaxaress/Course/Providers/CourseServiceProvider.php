@@ -31,7 +31,7 @@ class CourseServiceProvider extends ServiceProvider
             "icon" => "i-courses",
             "title" => "دوره ها",
             "url" => route('courses.index'),
-            'permission'=>Permission::PERMISSION_MANAGE_COURSES
+            "permission" => Permission::PERMISSION_MANAGE_COURSES
         ]);
     }
 }

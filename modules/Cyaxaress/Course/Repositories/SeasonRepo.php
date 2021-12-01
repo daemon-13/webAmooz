@@ -11,9 +11,14 @@ class SeasonRepo
 {
     public function getCourseSeasons($course)
     {
-        return Season::where('course_id',$course)
-            ->where('confirmation_status',Season::CONFIRMATION_STATUS_ACCEPTED)
+        return Season::where('course_id', $course)
+            ->where('confirmation_status', Season::CONFIRMATION_STATUS_ACCEPTED)
             ->orderBy('number')->get();
+    }
+
+    public function findByIdandCourseId($seasonId, $courseId)
+    {
+        return Season::where('course_id', $courseId)->where('id', $seasonId)->first();
     }
     public function store($id, $values)
     {
@@ -23,11 +28,9 @@ class SeasonRepo
             'title' => $values->title,
             'number' => $this->generateNumber($values->number, $id),
             'confirmation_status' => Season::CONFIRMATION_STATUS_PENDING,
-            'status'=>Season::STATUS_OPENED
+            'status' => Season::STATUS_OPENED
         ]);
     }
-
-
 
     public function findByid($id)
     {
@@ -61,6 +64,4 @@ class SeasonRepo
         }
         return $number;
     }
-
-
 }

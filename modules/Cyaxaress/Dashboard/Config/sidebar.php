@@ -2,10 +2,10 @@
 return [
     'items' => [
         'dashboard' => [],
-        'categories' => [],
         'courses' => [],
+        'categories' => [],
         'users' => [],
         'role-permissions' => [],
-        'usersInformation'=>[]
+        'usersInformation' => [],
     ]
 ];
